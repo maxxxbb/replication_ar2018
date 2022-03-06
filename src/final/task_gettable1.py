@@ -2,7 +2,8 @@ import pandas as pd
 import pytask
 
 from src.config import BLD
-from src.estimation.likelihoodfct import *
+from src.estimation.auxiliaryfct import load_args
+from src.estimation.estimation import estimate_table1
 
 
 @pytask.mark.depends_on(
@@ -22,7 +23,7 @@ def task_get_table_of_estimates(depends_on, produces):
     data_full = pd.read_pickle(depends_on["full_data"])
     args = load_args(data)
     args_full = load_args(data_full)
-    ml_estimates = estimate_table(args)
-    ml_estimates_full = estimate_table(args_full)
+    ml_estimates = estimate_table1(args)
+    ml_estimates_full = estimate_table1(args_full)
     ml_estimates.to_csv(produces["table1"])
     ml_estimates_full.to_csv(produces["table1_full"])
