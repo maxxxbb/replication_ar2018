@@ -11,24 +11,37 @@ def loglike(params, args, spec):
         Dictionary with
 
     """
-    predchoice = (
-        params.loc["phi", "value"]
-        * (params.loc["delta", "value"] ** args["netdistance"])
-        * (params.loc["beta", "value"] ** args["today"])
-        * (params.loc["betahat", "value"] ** args["prediction"])
-        * args["wage"]
-    ) ** (1 / (params.loc["gamma", "value"] - 1))
+    arglist = [
+        "netdistance",
+        "wage",
+        "today",
+        "prediction",
+        "pb",
+        "effort",
+        "ind_effort10",
+        "ind_effort110",
+    ]
 
     if spec == 4:
-        predchoice = predchoice - args["pb"] * params.loc["alpha", "value"]
+        beta, betahat, delta, gamma, phi, alpha, sigma = params["value"]
+    else:
+        beta, betahat, delta, gamma, phi, sigma = params["value"]
+
+    netdistance, wage, today, prediction, pb, effort, ind_effort10, ind_effort110 = [
+        args[i] for i in arglist
+    ]
+
+    predchoice = (
+        phi * (delta ** netdistance) * (beta ** today) * (betahat ** prediction) * wage
+    ) ** (1 / (gamma - 1))
+
+    if spec == 4:
+        predchoice = predchoice - pb * alpha
 
     prob = (
-        (1 - args["ind_effort10"] - args["ind_effort110"])
-        * norm.pdf(args["effort"], predchoice, params.loc["sigma", "value"])
-        + args["ind_effort10"]
-        * (1 - norm.cdf((predchoice - args["effort"]) / params.loc["sigma", "value"]))
-        + args["ind_effort110"]
-        * norm.cdf((predchoice - args["effort"]) / params.loc["sigma", "value"])
+        (1 - ind_effort10 - ind_effort110) * norm.pdf(effort, predchoice, sigma)
+        + ind_effort10 * (1 - norm.cdf((predchoice - effort) / sigma))
+        + ind_effort110 * norm.cdf((predchoice - effort) / sigma)
     )
     index_p0 = [i for i in range(0, len(prob)) if prob[i] == 0]
     index_p1 = [i for i in range(0, len(prob)) if prob[i] == 1]
