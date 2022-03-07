@@ -1,39 +1,58 @@
+import numpy as np
 import pandas as pd
 import pytest
 from numpy.testing import assert_almost_equal
 from pandas.testing import assert_series_equal
 
 from src.config import BLD
-from src.estimation.likelihoodfct import estimate_table
-from src.estimation.likelihoodfct import load_args
+from src.estimation.auxiliaryfct import load_args
+from src.estimation.auxiliaryfct import start_params
+from src.estimation.estimation import estimate_individual_ll
+from src.estimation.estimation import estimate_table1
 from src.estimation.likelihoodfct import loglike
-from src.estimation.likelihoodfct import start_params
 
 
 @pytest.fixture
-def args():
+def data():
     data = pd.read_pickle(BLD / "data" / "prepared_data.pkl")
-    out = load_args(data)
-    return out
+    return data
 
 
-def test_ll(args):
-
+def test_ll(data):
+    """
+    Tests whether Loglikelihoodfunction is set up correctly.
+    Fixture is from replication of Nunnari&Pozzi.
+    """
     expected = -29152.287491937557
-    params = start_params()
-    actual = loglike(params, args)["value"]
+    args = load_args(data)
+    params = start_params(spec=4)
+    actual = loglike(params, args, spec=4)["value"]
 
     assert_almost_equal(actual, expected, decimal=5)
 
 
-def test_estimagic(args):
-
+def test_estimate_ml(data):
+    """
+    Tests whether ... estimation (which one) .. yields correct results.
+    Fixture is from replication of Nunnari&Pozzi
+    """
+    args = load_args(data)
     expected = pd.Series(
         [0.835, 0.999, 1.003, 2.145, 723.974, 7.307, 42.625],
         index=["beta", "betahat", "delta", "gamma", "phi", "alpha", "sigma"],
         name="value",
     )
-
-    actual = estimate_table(args)["value"]
+    actual = estimate_table1(args)["value"]
 
     assert_series_equal(expected, actual)
+
+
+def test_estimate_individual_ll(data):
+    """
+    Tests wether individual parameters are estimated correctly.
+    Results for Individual 3 for column 3 is taken as a fixture and was calculated independently
+    """
+    params = start_params(spec=3)
+    expected = np.array([0.809, 0.832, 1.063, 1.431, 53.219, 391.648])
+    actual = np.round(estimate_individual_ll(3, data, 3, params), 3)
+    assert_almost_equal(expected, actual, 3)
