@@ -12,7 +12,7 @@ This repository contains code to replicate the main structural estimates in the 
 	- Estimation Method: Maximum Likelihood
 	- Source of Heterogeneity: Implementation Errors.
 
-The project aimed at applying programming techniques learned in the course "Effective Programming Practices for Economists" to the replication of said paper of Pozzi&Nunnari(2022) (Bocconi University). Their replication is openly available [here](https://github.com/MassimilianoPozzi/python_julia_structural_behavioral_economics/blob/main/README.md).
+This project is aimed at applying programming techniques learned in the course "Effective Programming Practices for Economists" to the replication of said paper of Pozzi&Nunnari(2022) (Bocconi University). Their replication is openly available [here](https://github.com/MassimilianoPozzi/python_julia_structural_behavioral_economics/blob/main/README.md).
 
 
 ### Requires
