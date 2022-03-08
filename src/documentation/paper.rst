@@ -4,8 +4,15 @@
 Research paper / presentations
 ******************************
 
-Purpose of the different files (rename them to your liking):
+The directory *src.paper* contains the .tex file for the actual paper and a task to convert the generated tables into latex code.
 
-    * :file:`research_paper.tex` contains the actual paper.
-    * :file:`research_pres_30min.tex` contains a typical conference presentation.
-    * :file:`formulas` contains short files with the LaTeX formulas -- put these into a library for re-use in paper and presentations.
+Purpose of the different files:
+
+    * :file:`replication_paper.tex` contains the actual paper.
+
+
+Convert CSV to latex
+====================
+
+.. automodule:: src.paper.task_table_to_tex
+    :members:

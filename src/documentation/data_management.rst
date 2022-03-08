@@ -4,7 +4,10 @@
 Data management
 ***************
 
-Documentation of the code in *src/data_management*.
+The folder *src/data_management* contains a task for data cleaning and preparation
+for use in *src/estimation*
 
-.. automodule:: src.data_management.task_get_simulation_draws
+Clean and prepare data
+======================
+.. automodule:: src.data_management.task_prepare_data
     :members:

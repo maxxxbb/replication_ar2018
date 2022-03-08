@@ -4,11 +4,24 @@
 Visualisation and results formatting
 ************************************
 
-Documentation of the code in *src.final*.
+The directory *src.final* contains code snippets to generate the final tables and plots.
 
 
-Schelling example
+Table 1
 =================
 
-.. automodule:: src.final.task_plot_locations
+.. automodule:: src.final.task_gettable1
+    :members:
+
+
+Table 2
+=================
+
+.. automodule:: src.final.task_gettable2
+    :members:
+
+Plots
+=================
+
+.. automodule:: src.final.task_getplots
     :members:
