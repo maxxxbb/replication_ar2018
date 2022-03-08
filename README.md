@@ -12,17 +12,17 @@ This repository contains code to replicate the main structural estimates in the 
 	- Estimation Method: Maximum Likelihood
 	- Source of Heterogeneity: Implementation Errors.
 
-The project aimed at applying programming techniques learned in the course "Effective Programming Practices for Economists" to the replication of said paper of Pozzi&Nunnari(2022) (Bocconi University). Their replication is openly available [here](https://github.com/MassimilianoPozzi/python_julia_structural_behavioral_economics/blob/main/README.md)
+The project aimed at applying programming techniques learned in the course "Effective Programming Practices for Economists" to the replication of said paper of Pozzi&Nunnari(2022) (Bocconi University). Their replication is openly available [here](https://github.com/MassimilianoPozzi/python_julia_structural_behavioral_economics/blob/main/README.md).
 
 
 ### Requires
-In order to run this project in your local machine you need to have a release of Python, a modern LaTex distribution in order to compile .tex documents.
+In order to run this project on your local machine you need to have installed Python, an Anaconda distribution and LaTex distribution in order to compile .tex documents.
 
 The project was created on Windows 10 using
 
--Anaconda 4.11.0
--Python 3.9.10
--MikTex 22.1
+- Anaconda 4.11.0
+- Python 3.9.10
+- MikTex 22.1
 
 1. All necessary python dependencies are contained in environment.yml . To install activate the virtual environment in a terminal move to the root of repository and type `$ conda env create -f environment.yml` and to activate  `$ conda activate replication_ar2018`.
 
