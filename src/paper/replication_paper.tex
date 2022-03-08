@@ -1,0 +1,115 @@
+\documentclass[11pt, a4paper, leqno]{article}
+\usepackage{a4wide}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{float, afterpage, rotating, graphicx}
+\usepackage{epstopdf}
+\usepackage{longtable, booktabs, tabularx}
+\usepackage{fancyvrb, moreverb, relsize}
+\usepackage{eurosym, calc}
+% \usepackage{chngcntr}
+\usepackage{amsmath, amssymb, amsfonts, amsthm, bm}
+\usepackage{caption}
+\usepackage{mdwlist}
+\usepackage{xfrac}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{minibox}
+\usepackage{subfig}
+% \usepackage{pdf14} % Enable for Manuscriptcentral -- can't handle pdf 1.5
+% \usepackage{endfloat} % Enable to move tables / figures to the end. Useful for some submissions.
+
+
+
+\usepackage{natbib}
+\bibliographystyle{rusnat}
+
+
+
+
+\usepackage[unicode=true]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    anchorcolor=black,
+    citecolor=black,
+    filecolor=black,
+    menucolor=black,
+    runcolor=black,
+    urlcolor=black
+}
+
+
+\widowpenalty=10000
+\clubpenalty=10000
+
+\setlength{\parskip}{1ex}
+\setlength{\parindent}{0ex}
+\setstretch{1.5}
+
+
+\begin{document}
+
+\title{Final Project: Replication of Augenblick & Rabin (2018)\thanks{Max Boehringer, Uni Bonn. Email: \href{mailto:s6mxboeh@uni-bonn.de}{\nolinkurl{s6mxboeh [at] uni-bonn [dot] de}}.}}
+
+\author{Max Boehringer}
+
+\date{
+    {\bf Preliminary -- please do not quote}
+    \\[1ex]
+    \today
+}
+
+\maketitle
+
+
+\begin{abstract}
+In their paper "An Experiment on Time Preference and Misprediction
+in Unpleasant Tasks" \citet{augenblick2019experiment} investigated the time-inconsistent taste
+and future misprediction. Across seven weeks they let a total of 100 participants choose the
+number of unpleasant transcription tasks given various wages to complete immediately
+and at different future dates. Their main estimate of the present bias parameter  was 0.83,
+which could successfully be replicated in table 1.
+
+\end{abstract}
+\clearpage
+
+\section{Introduction} % (fold)
+\label{sec:introduction}
+For the replication I used the python tools estimagic (\citet{Gabler2021}), pytask (\citet{Raabe2020})
+and the project template for reproducible economics (\citet{GaudeckerEconProjectTemplates}).
+The replication is based on the work of \citet{PozziNunnari}.
+
+\section{Table 1: Primary Structural Estimates}
+\label{sec:table1}
+\input{tables/table1}
+\\
+\section{Table 2: Summary statistics for individual structural estimates}
+\label{sec:table2}
+\input{tables/table2}
+\newpage
+\section{Plots}
+\label{sec:plots}
+\begin{figure}[h]
+    \centering
+    \subfloat[Distribution of individual estimates for \beta]{{\includegraphics[width=5cm]{../../bld/figures/figure1.png} }}
+    \qquad
+    \subfloat[Distribution of individual estimates for \beta]{{\includegraphics[width=5cm]{../../bld/figures/figure2.png}}}
+    \caption{Distribution of individual estimates for \beta and \beta}
+\label{fig:fig12}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \subfloat[Distribution of individual estimates for \delta]{{\includegraphics[width=5cm]{../../bld/figures/figure3.png}}}
+    \qquad
+    \subfloat[Distribution of individual estimates for \gamma]{{\includegraphics[width=5cm]{../../bld/figures/figure4.png}}}
+    \caption{Distribution of individual estimates for \delta and \gamma}
+\label{fig:fig34}
+\end{figure}
+\newpage
+
+\bibliography{refs}
+
+
+\end{document}
