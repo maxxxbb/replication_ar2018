@@ -9,6 +9,19 @@ from src.config import BLD
 
 
 def get_column(res, spec):
+    """
+    Creates Columns for table 2 for each specification.
+    For each estimated parameter the authors compute the mean,
+    median and standard error across individuals and list them
+    in a table.
+        Args:
+            - res(list): list of arrays containing the subject
+            - specific paramater estimates
+            - spec(int): specification parameter
+        Returns:
+            - column(Pd.Dataframe): column spec of table 2
+
+    """
     if spec != 4:
         param = pd.DataFrame(
             res, columns=["beta", "betahat", "delta", "gamma", "phi", "sigma"]
@@ -67,11 +80,20 @@ def get_column(res, spec):
             ],
             3,
         )
-
+    # Include projection-bias parameter in spec 4
     return column
 
 
 def get_table2(res):
+    """
+    Puts columns for table 2 together in a Dataframe and adds labels
+        Args:
+            - res(list): list of arrays containing the subject
+            - specific paramater estimates
+        Returns:
+            - table2(Pd.DataFrame): Dataframe containing table 2
+    """
+
     rownames = [
         "mean(beta)",
         "median(beta)",
@@ -109,6 +131,9 @@ def get_table2(res):
 @pytask.mark.depends_on(BLD / "estimation" / "individual_estimates.pkl")
 @pytask.mark.produces(BLD / "tables" / "table2.csv")
 def task_gettable2(depends_on, produces):
+    """
+    Loads table 2 into a csv-file.
+    """
     with open(depends_on, "rb") as f:
         res = pickle.load(f)
     table2 = get_table2(res)

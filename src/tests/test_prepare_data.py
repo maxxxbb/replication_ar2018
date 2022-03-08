@@ -4,7 +4,7 @@ import pytest
 from pandas.testing import assert_frame_equal
 
 from src.config import SRC
-from src.data_management.prepare_data import prepare_data
+from src.data_management.task_prepare_data import prepare_data
 
 
 @pytest.fixture
@@ -22,13 +22,26 @@ def ind_to_keep():
 
 
 def test_data_management(data, ind_to_keep):
-
+    """
+    Tests whether data-management function is correctly set up.
+    """
     expected = mimic_replication_datamanagement(data, ind_to_keep)
     actual = prepare_data(data, ind_to_keep, full_dataset=False)
     assert_frame_equal(expected, actual)
 
 
 def mimic_replication_datamanagement(dt, ind_keep):
+    """
+    Reproducing Pozzis & Nunnaris data management.
+
+    Args:
+        - dt(Pd.Dataframe): full dataset
+        - ind_keep(Pd.Dataframe): specifies individuals to keep
+        in each specification
+    Returns:
+        - dt(Pd.Dataframe): fixture for data-management test
+    """
+
     dt = dt[dt.wid.isin(ind_keep.wid_col1)]
     dt = dt[dt.bonusoffered != 1]
     dt["pb"] = dt["workdone1"] / 10

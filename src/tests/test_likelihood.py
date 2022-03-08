@@ -7,8 +7,8 @@ from pandas.testing import assert_series_equal
 from src.config import BLD
 from src.estimation.auxiliaryfct import load_args
 from src.estimation.auxiliaryfct import start_params
+from src.estimation.estimation import estimagic_table1
 from src.estimation.estimation import estimate_individual_ll
-from src.estimation.estimation import estimate_table1
 from src.estimation.likelihoodfct import loglike
 
 
@@ -33,8 +33,8 @@ def test_ll(data):
 
 def test_estimate_ml(data):
     """
-    Tests whether ... estimation (which one) .. yields correct results.
-    Fixture is from replication of Nunnari&Pozzi
+    Tests whether primary structural estimation yields correct results.
+    Fixture is from replication of Nunnari&Pozzi.
     """
     args = load_args(data)
     expected = pd.Series(
@@ -42,15 +42,14 @@ def test_estimate_ml(data):
         index=["beta", "betahat", "delta", "gamma", "phi", "alpha", "sigma"],
         name="value",
     )
-    actual = estimate_table1(args)["value"]
+    actual = estimagic_table1(args)["value"]
 
     assert_series_equal(expected, actual)
 
 
 def test_estimate_individual_ll(data):
     """
-    Tests wether individual parameters are estimated correctly.
-    Results for Individual 3 for column 3 is taken as a fixture and was calculated independently
+    Tests whether participant-specific parameters are estimated correctly.
     """
     params = start_params(spec=3)
     expected = np.array([0.809, 0.832, 1.063, 1.431, 53.219, 391.648])

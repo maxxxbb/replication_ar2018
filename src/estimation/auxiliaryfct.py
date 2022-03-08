@@ -6,8 +6,16 @@ from src.config import SRC
 
 def start_params(spec):
     """
-    Define initial guesses Consistent with the ones used by Augenblick & Rabin in original paper
-    and Pozzi & Nunnari in their replication
+    Define initial guesses Consistent with the ones used by Augenblick & Rabin
+    in their Stata code and Pozzi & Nunnari in their replication.
+    For table 1 and column 4 of table 2 the additional
+    parameter "alpha" will be estimated.
+
+    Args:
+        - spec(int): specification parameter (specifies row of final table2)
+
+    Returns:
+        - init_parm(pd.DataFrame): Contains initial guesses for optimization
 
     """
     if spec != 4:
@@ -30,12 +38,13 @@ def start_params(spec):
 def load_args(data):
 
     """
-    Loads necessary arguments into a dict/dataframe
+    Loads necessary arguments for Maximum-Likelihood Estimation
+
     Args:
-        data (pd.DataFrame): Dataset containing observations for 71 individuals
+        - data(pd.DataFrame): Dataset containing all observations for 71 individuals
 
     Returns:
-        args (pd.DataFrame): Arguments(Necessary Columns) for LL-Function
+        - args(pd.DataFrame): Arguments(Necessary Columns) for ML-Estimations
 
     """
     arglist = [
@@ -59,14 +68,14 @@ def prepare_data_fortable2(data, spec):
     """
     Drops individuals when in list of individuals which were not considered
     in the paper for the respective specification due to computational issues
-    (Stata algorithm did not converge)
+    in Stata.
 
     Args:
-        data(Pd.DataFrame): full Dataset with changes from previous
-        spec(int): specification parameter
+        - data(Pd.DataFrame): full prepared dataset
+        - spec(int): specification parameter
 
     Returns:
-        out(Pd.DataFrame): Dataset with individuals to keep in each specification
+        - out(Pd.DataFrame): Dataset with individuals kept in each specification
 
     """
     ind = pd.read_csv(SRC / "replication_files" / "original_data" / "ind_to_keep.csv")
@@ -83,13 +92,18 @@ def prepare_data_fortable2(data, spec):
 
 def getind(dataset, wid, spec):
     """
-    Specifies Dataset for column 2 and 3 of table 2:
-    In column 2 early decisions are considered and in column 3 late decisions are considered
+    Specifies individual dataset for column 2 and 3 of table 2:
+    In column 2 early decisions are considered while in column 3
+    late decisions are considered. For col 1 and 4 all decicions
+    are taken into account.
 
     Args:
-        dataset:
-        wid:
-        spec
+        - dataset(Pd.DataFrame): dataset containing all considered individuals
+        - wid(int): Individual ID
+        - spec(int): specification parameter
+    Returns:
+        - dataset_ind(Pd.DataFrame):  Relevant individual-level dataframe
+        containing only observations for individual whose ID=wid.
 
     """
     dataset_ind = dataset[dataset.wid == wid]

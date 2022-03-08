@@ -16,7 +16,7 @@ tables = ["table1", "table2", "table1_full"]
 )
 def task_convert_tables(depends_on, produces):
     """
-    Converts tables (csv) into latex tabular
+    Converts csv-file into latex tabular to include in paper
     """
     table = pd.read_csv(depends_on)
     with open(produces, "w") as tf:

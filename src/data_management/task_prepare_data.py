@@ -32,21 +32,22 @@ def task_get_prepared_data(depends_on, produces):
 def prepare_data(data, ind, full_dataset=False):
     """
 
-    Prepares Data for use in Analysis.
-    removes observatoins where bonus was offerde
+    Prepares Data for the Estimation. Removes observations where bonus was offered,
+    adds dummy variables to dataset and optionally drops subjects whose
+        individual estimates did not converge in Stata.
     Args:
-        data(Dta-File): Whole Dataset
-        full_dataset(Boolean): indicates whether individuals should be left
-        out of analysis or not
+        - data(Dta-File): Raw Decisions-Dataset containing observations for 100 individuals.
+        - full_dataset(bool): Indicates whether subjects are dropped
+
     Returns:
-        prepared_data(Pandas Dataframe): Dataset for Analysis
+        - prepared_data(pd.DataFrame): Prepared data for ML-Analysis
     """
-    data = data[data.bonusoffered != 1]
-    data["pb"] = data["workdone1"] / 10
+    data = data[data.bonusoffered != 1]  # remove obs when bonus was offered
+    data["pb"] = data["workdone1"] / 10  # pb dummy variable(workdon1 either 1 or 10)
     data["ind_effort10"] = (data["effort"] == 10).astype(int)  # ind_effort10 dummy
     data["ind_effort110"] = (data["effort"] == 110).astype(int)  # ind_effort110 dummy
 
-    if full_dataset == False:
+    if full_dataset is False:
         out = data[data.wid.isin(ind.wid_col1)]
     else:
         out = data

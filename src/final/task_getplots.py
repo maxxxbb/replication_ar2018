@@ -17,7 +17,10 @@ from src.config import BLD
     ]
 )
 def task_create_plots(depends_on, produces):
-
+    """
+    Creates plots of distribution of estimates of column 1 in
+    table 2.
+    """
     with open(depends_on, "rb") as f:
         estimates = pickle.load(f)[1]
 
