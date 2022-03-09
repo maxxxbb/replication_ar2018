@@ -45,14 +45,17 @@ def prepare_data(data, ind, full_dataset=False):
 
     """
     data = data[data.bonusoffered != 1]
-    data["pb"] = data["workdone1"] / 10
-    data["ind_effort10"] = (data["effort"] == 10).astype(int)
-    data["ind_effort110"] = (data["effort"] == 110).astype(int)
+
+    pb = pd.Series(data["workdone1"] / 10, name="pb")
+    ind_effort10 = pd.Series((data["effort"] == 10).astype(int), name="ind_effort10")
+    ind_effort110 = pd.Series((data["effort"] == 110).astype(int), name="ind_effort110")
+
+    df = pd.concat([data, pb, ind_effort10, ind_effort110], axis=1)
 
     if full_dataset is False:
-        out = data[data.wid.isin(ind.wid_col1)]
+        out = df[df.wid.isin(ind.wid_col1)]
     else:
-        out = data
+        out = df
 
     out.index = np.arange(len(out.wid))
 
