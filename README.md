@@ -24,11 +24,11 @@ The project was created on Windows 10 using
 - Python 3.9.10
 - MikTex 22.1
 
-1. All necessary python dependencies are contained in environment.yml . To install activate the virtual environment in a terminal move to the root of repository and type `$ conda env create -f environment.yml` and to activate  `$ conda activate replication_ar2018`.
+1. All necessary python dependencies are contained in environment.yml . To install the virtual environment in a terminal move to the root folder of the repository and type `$ conda env create -f environment.yml` and to activate type  `$ conda activate replication_ar2018`.
 
 2. In order for imports to properly work in a terminal move to the root of the repository and type `$ conda develop .`
 
-3. This project relies on pytask. To run the project once the repository is cloned to your local machine and above steps just type
+3. This project relies on pytask. To run the project once the repository is cloned to your local machine and above steps are completed just type
 `$ pytask`
 
 ### How Do I Navigate This Repository?
@@ -40,7 +40,7 @@ The repository was set up using the [Templates for Reproducible Research Project
 - **estimation**: estimation results for generating tables and graphs.
 - **figures** :  plots
 - **paper** : final pdf
-- **tables** : tables
+- **tables** : tables of estimates and summary statistics
 
 
 ### Following tools where used in this project:
