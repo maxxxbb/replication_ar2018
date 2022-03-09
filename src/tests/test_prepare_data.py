@@ -35,11 +35,13 @@ def mimic_replication_datamanagement(dt, ind_keep):
     Reproducing Pozzis & Nunnaris data management.
 
     Args:
-        - dt(Pd.Dataframe): full dataset
-        - ind_keep(Pd.Dataframe): specifies individuals to keep
-        in each specification
+        dt(Pd.Dataframe): full dataset
+        ind_keep(Pd.Dataframe): specifies individuals to keep
+            in each specification
+
     Returns:
-        - dt(Pd.Dataframe): fixture for data-management test
+        dt(Pd.Dataframe): fixture for data-management test
+
     """
 
     dt = dt[dt.wid.isin(ind_keep.wid_col1)]

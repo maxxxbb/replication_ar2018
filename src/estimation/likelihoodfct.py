@@ -5,12 +5,13 @@ from scipy.stats import norm
 def loglike(params, args, spec):
     """
     Computes the log likelihood of observing our data given the parameters of the model.
-        Args:
-            - params(pd.DataFrame): Parameters to be estimated in Optimization
-            - args(pd.DataFrame): Dataframe containing the arguments of the model
 
-        Returns:
-            - out(dict): Dictionary containing individual contributions("contr")
+    Args:
+        params(pd.DataFrame): Parameters to be estimated in Optimization
+        args(pd.DataFrame): Dataframe containing the arguments of the model
+
+    Returns:
+        out(dict): Dictionary containing individual contributions("contr")
             and sum of loglikelihood-function("value")
 
     """

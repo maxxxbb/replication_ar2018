@@ -14,12 +14,13 @@ def get_column(res, spec):
     For each estimated parameter the authors compute the mean,
     median and standard error across individuals and list them
     in a table.
-        Args:
-            - res(list): list of arrays containing the subject
-            - specific paramater estimates
-            - spec(int): specification parameter
-        Returns:
-            - column(Pd.Dataframe): column spec of table 2
+
+    Args:
+        res(list): list of arrays containing individual-specific paramater estimates
+        spec(int): specification parameter
+
+    Returns:
+        column(Pd.Dataframe): column spec of table 2
 
     """
     if spec != 4:
@@ -87,11 +88,14 @@ def get_column(res, spec):
 def get_table2(res):
     """
     Puts columns for table 2 together in a Dataframe and adds labels
-        Args:
-            - res(list): list of arrays containing the subject
-            - specific paramater estimates
-        Returns:
-            - table2(Pd.DataFrame): Dataframe containing table 2
+
+    Args:
+        res(list): list of arrays containing the subject
+            specific paramater estimates
+
+    Returns:
+        table2(Pd.DataFrame): Dataframe containing table 2
+
     """
 
     rownames = [

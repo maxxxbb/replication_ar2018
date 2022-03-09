@@ -12,10 +12,10 @@ def start_params(spec):
     parameter "alpha" will be estimated.
 
     Args:
-        - spec(int): specification parameter (specifies row of final table2)
+        spec(int): specification parameter (specifies row of final table2)
 
     Returns:
-        - init_parm(pd.DataFrame): Contains initial guesses for optimization
+        init_parm(pd.DataFrame): Contains initial guesses for optimization
 
     """
     if spec != 4:
@@ -41,10 +41,10 @@ def load_args(data):
     Loads necessary arguments for Maximum-Likelihood Estimation
 
     Args:
-        - data(pd.DataFrame): Dataset containing all observations for 71 individuals
+        data(pd.DataFrame): Dataset containing all observations for 71 individuals
 
     Returns:
-        - args(pd.DataFrame): Arguments(Necessary Columns) for ML-Estimations
+        args(pd.DataFrame): Arguments(Necessary Columns) for ML-Estimations
 
     """
     arglist = [
@@ -71,11 +71,11 @@ def prepare_data_fortable2(data, spec):
     in Stata.
 
     Args:
-        - data(Pd.DataFrame): full prepared dataset
-        - spec(int): specification parameter
+        data(Pd.DataFrame): full prepared dataset
+        spec(int): specification parameter
 
     Returns:
-        - out(Pd.DataFrame): Dataset with individuals kept in each specification
+        out(Pd.DataFrame): Dataset with individuals kept in each specification
 
     """
     ind = pd.read_csv(SRC / "replication_files" / "original_data" / "ind_to_keep.csv")
@@ -98,12 +98,12 @@ def getind(dataset, wid, spec):
     are taken into account.
 
     Args:
-        - dataset(Pd.DataFrame): dataset containing all considered individuals
-        - wid(int): Individual ID
-        - spec(int): specification parameter
+        dataset(Pd.DataFrame): dataset containing all considered individuals
+        wid(int): Individual ID
+        spec(int): specification parameter
     Returns:
-        - dataset_ind(Pd.DataFrame):  Relevant individual-level dataframe
-        containing only observations for individual whose ID=wid.
+        dataset_ind(Pd.DataFrame):  Relevant individual-level dataframe
+            containing only observations for individual whose ID=wid.
 
     """
     dataset_ind = dataset[dataset.wid == wid]

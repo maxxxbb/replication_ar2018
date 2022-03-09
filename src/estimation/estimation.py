@@ -16,11 +16,12 @@ def estimagic_table2(dataset, spec):
     specification.
 
     Args:
-        - dataset(Pd.Dataframe): full prepared dataset
-        - spec(int): specification parameter
+        dataset(Pd.Dataframe): full prepared dataset
+        spec(int): specification parameter
     Returns:
-        - results(list): list of arrays containing the subject
-        specific paramater estimates
+        results(list): list of arrays containing the subject
+            specific paramater estimates
+
     """
     data = prepare_data_fortable2(dataset, spec)
     params = start_params(spec)
@@ -35,12 +36,12 @@ def estimate_individual_ll(wid, dataset, spec, params):
     Estimates individual structural estimate.
 
     Args:
-        - wid(int): participant index
-        - dataset(Pd.DataFrame): prepared dataframe with subjects to keep in each column.
-        - spec(int): specification parameter
-        - params(Pd.DataFrame): parameters to estimate
+        wid(int): participant index
+        dataset(Pd.DataFrame): prepared dataframe with subjects to keep in each column.
+        spec(int): specification parameter
+        params(Pd.DataFrame): parameters to estimate
     Returns:
-        - out(np.Array): Array containing individual structural estimates
+        out(np.Array): Array containing individual structural estimates
 
     """
     dt_ind = getind(dataset, wid, spec)
@@ -61,9 +62,9 @@ def estimagic_table1(args):
     Primary aggregate structural estimation.
 
     Args:
-        - args(Pd.DataFrame): DataFrame containing args for Likelihood function
+        args(Pd.DataFrame): DataFrame containing args for Likelihood function
     Returns:
-        - ml_estimates(Pd.Dataframe): Table of primary structural estimates
+        ml_estimates(Pd.Dataframe): Table of primary structural estimates
 
     """
     params = start_params(4)

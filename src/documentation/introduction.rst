@@ -12,5 +12,6 @@ This project uses a modified version of Pozzis & Nunnaris code from their replic
 
 You can find the documentation on the rationale, pytask, and more background at https://econ-project-templates.readthedocs.io/en/stable/.
 
+More information about Estimagic can be found at https://estimagic.readthedocs.io/en/stable/.
 
 
