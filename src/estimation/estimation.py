@@ -73,6 +73,6 @@ def estimagic_table1(args):
         params=params,
         optimize_options={"algorithm": "scipy_neldermead"},
         loglike_kwargs={"args": args, "spec": 4},
-    )
+    )  # tried "bhhh" here: invalid algorithm
     ml_estimates = res["summary_jacobian"].round(3)
     return ml_estimates
