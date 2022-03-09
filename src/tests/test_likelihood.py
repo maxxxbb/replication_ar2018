@@ -4,7 +4,8 @@ import pytest
 from numpy.testing import assert_almost_equal
 from pandas.testing import assert_series_equal
 
-from src.config import BLD
+from src.config import SRC
+from src.data_management.task_prepare_data import prepare_data
 from src.estimation.auxiliaryfct import load_args
 from src.estimation.auxiliaryfct import start_params
 from src.estimation.estimation import estimagic_table1
@@ -14,7 +15,11 @@ from src.estimation.likelihoodfct import loglike
 
 @pytest.fixture
 def data():
-    data = pd.read_pickle(BLD / "data" / "prepared_data.pkl")
+    dt = pd.read_stata(
+        SRC / "replication_files" / "original_data" / "decisions_data.dta"
+    )
+    ind = pd.read_csv(SRC / "replication_files" / "original_data" / "ind_to_keep.csv")
+    data = prepare_data(dt, ind)
     return data
 
 
