@@ -17,6 +17,7 @@ dependencies:
   - python=3.9
   - python-graphviz
   - scipy
+  - latexmk
 
 
   - virtualenv=20.0.33
@@ -30,5 +31,5 @@ dependencies:
     - sphinx-rtd-theme
     - sphinxcontrib-bibtex
     - estimagic
-    - latexmk
+
 
